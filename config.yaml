@@ -1,0 +1,3 @@
+OTEL_EXPORTER_OTLP_ENDPOINT: localhost:4317
+ColectorServer: localhost:4317
+facility: opentel

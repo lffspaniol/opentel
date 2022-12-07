@@ -1,6 +1,5 @@
 version: "2"
 services:
-
   # Jaeger
   jaeger-all-in-one:
     image: jaegertracing/all-in-one:latest
@@ -19,9 +18,9 @@ services:
 
   # Collector
   otel-collector:
-    image: ${OTELCOL_IMG}
+    image: otel/opentelemetry-collector-contrib-dev:latest
     restart: always
-    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
@@ -34,7 +33,6 @@ services:
     depends_on:
       - jaeger-all-in-one
       - zipkin-all-in-one
-      
   prometheus:
     container_name: prometheus
     image: prom/prometheus:latest

@@ -20,6 +20,8 @@ func Load() *Config {
 		panic(fmt.Errorf("fatal error config file: %w", err))
 	}
 	var config Config
+	viper.AutomaticEnv()
+
 	config.ColectorServer = viper.GetString("colectorServer")
 	config.Facility = viper.GetString("facility")
 	return &config
