@@ -1,0 +1,45 @@
+{
+        "Name": "Request",
+        "SpanContext": {
+                "TraceID": "b770c482b597e60c37ddf6c479947979",
+                "SpanID": "44632cf8a2a419d4",
+                "TraceFlags": "01",
+                "TraceState": "",
+                "Remote": false
+        },
+        "Parent": {
+                "TraceID": "b770c482b597e60c37ddf6c479947979",
+                "SpanID": "29a4cbcd0d7f2cf5",
+                "TraceFlags": "01",
+                "TraceState": "",
+                "Remote": false
+        },
+        "SpanKind": 1,
+        "StartTime": "2022-12-11T22:12:37.443891159-03:00",
+        "EndTime": "2022-12-11T22:12:38.444795607-03:00",
+        "Attributes": null,
+        "Events": null,
+        "Links": null,
+        "Status": {
+                "Code": "Unset",
+                "Description": ""
+        },
+        "DroppedAttributes": 0,
+        "DroppedEvents": 0,
+        "DroppedLinks": 0,
+        "ChildSpanCount": 0,
+        "Resource": [
+                {
+                        "Key": "service.name",
+                        "Value": {
+                                "Type": "STRING",
+                                "Value": "api"
+                        }
+                }
+        ],
+        "InstrumentationLibrary": {
+                "Name": "calingapi",
+                "Version": "",
+                "SchemaURL": ""
+        }
+}

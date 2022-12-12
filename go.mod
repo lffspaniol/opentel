@@ -10,7 +10,10 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v0.34.0
 )
 
-require go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.11.2 // indirect
+require (
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.11.2 // indirect
+	go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.11.2 // indirect
+)
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.0 // indirect

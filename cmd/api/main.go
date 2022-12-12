@@ -15,7 +15,8 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/runtime"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
+
+	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
 	"go.opentelemetry.io/otel/metric/global"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/metric"
@@ -102,11 +103,16 @@ func RemoteRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func Tracer(ctx context.Context, conn *grpc.ClientConn, uri string) (func(), error) {
-	// Set up a trace exporter
-	traceExporter, err := otlptracegrpc.New(ctx, otlptracegrpc.WithGRPCConn(conn))
+	// Create stdout exporter to be able to retrieve
+	traceExporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint())
 	if err != nil {
 		return nil, fmt.Errorf("failed to create trace exporter: %w", err)
 	}
+	// Set up a trace exporter
+	// traceExporter, err := otlptracegrpc.New(ctx, otlptracegrpc.WithGRPCConn(conn))
+	// if err != nil {
+	// 	return nil, fmt.Errorf("failed to create trace exporter: %w", err)
+	// }
 
 	batch := sdktrace.NewBatchSpanProcessor(traceExporter)
 
@@ -137,6 +143,7 @@ func Metrics(ctx context.Context, conn *grpc.ClientConn, uri string) (func(), er
 		return nil, err
 	}
 	read := metric.NewPeriodicReader(metricExporter, metric.WithInterval(1*time.Second))
+
 	provider := metric.NewMeterProvider(metric.WithResource(res), metric.WithReader(read))
 
 	global.SetMeterProvider(provider)
