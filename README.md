@@ -13,6 +13,12 @@ The demo exposes the following backends:
 - Zipkin at http://0.0.0.0:9411
 - Prometheus at http://0.0.0.0:9090 
 
-```shell
- go run cmd/api/main.go 
+```shell    
+opentelemetry-instrument \
+    --traces_exporter console,otlp \
+    --metrics_exporter none \
+    --service_name test \
+    --exporter_otlp_endpoint 0.0.0.0:4317 \
+    python myapp.py
+
 ```
