@@ -14,5 +14,11 @@ The demo exposes the following backends:
 - Prometheus at http://0.0.0.0:9090 
 
 ```shell
- go run cmd/api/main.go 
+
+npm install --save @opentelemetry/auto-instrumentations-node                     02:10:27 
+npm install --save @opentelemetry/exporter-trace-otlp-http
+npm install --save @opentelemetry/resources
+npm install --save @opentelemetry/sdk-node
+npm install --save @opentelemetry/semantic-conventions
+
 ```
